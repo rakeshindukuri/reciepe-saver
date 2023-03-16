@@ -22,10 +22,13 @@ function addRecipe(event) {
   recipes.push(recipe);
   recipeForm.reset();
   updateRecipeList();
+  localStorage.setItem('recipes', JSON.stringify(recipes));
 }
+
 
 // Function to update the recipe list in the UI
 function updateRecipeList() {
+  // Update the recipe list in the UI
   recipeList.innerHTML = '';
   recipes.forEach((recipe, index) => {
     const li = document.createElement('li');
@@ -35,13 +38,21 @@ function updateRecipeList() {
     li.dataset.index = index;
     recipeList.appendChild(li);
   });
+
+  // Store the recipes in local storage
+  localStorage.setItem('recipes', JSON.stringify(recipes));
 }
+
 
 // Function to show recipe details in a modal
 function showRecipeDetails(event) {
   const li = event.target.closest('li');
   if (li) {
     const index = li.dataset.index;
+    const storedRecipes = JSON.parse(localStorage.getItem('recipes'));
+    if (storedRecipes) {
+      recipes = storedRecipes;
+    }
     const recipe = recipes[index];
     recipeDetailsTitle.textContent = recipe.title;
     recipeDetailsInstructions.textContent = recipe.instructions;
@@ -49,6 +60,7 @@ function showRecipeDetails(event) {
     recipeDetailsModal.style.display = 'block';
   }
 }
+
 
 // Function to hide recipe details modal
 function hideRecipeDetails(event) {
