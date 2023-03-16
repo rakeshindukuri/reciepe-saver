@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Recipe App</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>My Recipe Book</h1>
+      <form id="add-recipe-form">
+        <label for="recipe-title">Title:</label>
+        <input type="text" id="recipe-title" name="recipe-title" required>
+        <label for="recipe-instructions">Instructions:</label>
+        <textarea id="recipe-instructions" name="recipe-instructions" required></textarea>
+        <label for="recipe-notes">Notes:</label>
+        <textarea id="recipe-notes" name="recipe-notes"></textarea>
+        <button type="submit">Add Recipe</button>
+      </form>
+      <ul id="recipe-list"></ul>
+    </div>
+    <div id="recipe-details-modal">
+      <div id="recipe-details">
+        <h2 id="recipe-details-title"></h2>
+        <p id="recipe-details-instructions"></p>
+        <p id="recipe-details-notes"></p>
+        <button id="close-recipe-details-modal">Close</button>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
+
